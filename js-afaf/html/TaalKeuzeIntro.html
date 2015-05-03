@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+<script src="../js/TaalKeuze.js"></script>
+
+<style>
+
+#container {
+	width: 50%;
+	margin:auto;
+	margin-top:12em;
+	text-align:center;
+	/*outline:1px solid red ;*/
+	}
+</style>
+
+<script>
+
+function setLanguage(chosenLanguage) {
+	/*if cookie exists update value to passed param or create cookie*/	
+	setCookie('language', chosenLanguage, 100);
+	}
+
+	
+	
+	
+
+window.onload = function() {
+	
+	/* if cookie exits read value and redirect to page else let user choose language on this page */
+	if (getCookie('language')){
+	//console.log("cookie exists");		
+
+	switch (getCookie('language')) {
+		case "NL" : 	window.location = "TaalKeuzeNederlands.html" ;
+			break;
+		case "FR" : 	window.location = "TaalKeuzeFrancais.html" ;
+			break;
+		case "EN" : 	window.location = "TaalKeuzeEnglish.html" ;
+			break;	
+		//default : 	console.log("default");
+		}
+	}
+	
+	
+	else {
+	console.log("cookie doesn't exist");
+	var eNL = document.getElementById('NL');
+	var eFR = document.getElementById('FR');
+	var eEN = document.getElementById('EN');
+	
+	eNL.addEventListener('click', function(){setLanguage('NL');});
+	eFR.addEventListener('click', function(){setLanguage('FR');});
+	eEN.addEventListener('click', function(){setLanguage('EN');});
+	}
+	
+	
+	}
+	
+
+
+
+</script>
+
+
+
+</head>
+
+<body>
+
+<div id= "container">
+<header>
+Welkom / Bienvenue / Welcome
+
+<br>
+<br>
+<br>
+</header>
+<section>
+
+<div>kies uw taal : <a id="NL" href ="TaalKeuzeNederlands.html"><img src="../images/be.png"  alt="NL"/></a></div>  
+<div>Choisissez vore langue :<a id="FR" href ="TaalKeuzeFrancais.html"><img src="../images/fr.png"  alt="FR"/></a></div>  
+<div>Choose your language :<a id="EN" href ="TaalKeuzeEnglish.html"><img src="../images/gb.png"  alt="EN"/></a></div>  
+
+</section>
+</div>
+<footer>
+</footer>
+
+</body>
+</html>

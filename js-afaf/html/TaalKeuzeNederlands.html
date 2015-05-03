@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+<script src="../js/TaalKeuze.js"></script>
+<style>
+
+#container {
+	width: 50%;
+	margin:auto;
+	margin-top:12em;
+	text-align:center;
+	/*outline:1px solid red ;*/
+	font :  2em arial, sans-serif;  
+	}
+	
+#myFooter {
+	position:absolute;
+   bottom:0;
+   width:100%;
+   height:60px;
+   line-height:60px;
+   background: lightgray;
+   text-align:center;
+	}
+
+#myHeader {
+	position:absolute;
+   Top:0;
+   width:100%;
+   height:60px;
+   line-height:60px;
+   background: lightgray;
+   text-align:center;
+	}
+
+</style>
+
+<script>
+window.onload = function(){
+	
+	var eDeleteCookie = document.getElementById('deleteCookie');
+	eDeleteCookie.addEventListener('click', function(){clearCookie('language');});
+	
+	var eChangeLanguage =  document.getElementById('changeLanguage');
+	eChangeLanguage.addEventListener('click', function(){clearCookie('language'); window.location = "TaalKeuzeIntro.html";});
+
+	}
+
+</script>
+
+</head>
+<body>
+
+<header id="myHeader">
+<a id="changeLanguage"  href="#">Een andere taal Kiezen</a>
+</header>
+
+<div id= "container">
+Dit is de <em>nederlandse</em> versie van de website.
+</div>
+<footer id="myFooter">
+<a id ="deleteCookie"  href="#">Vernietig cookie</a>
+</footer>
+
+</body>
+</html>

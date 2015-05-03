@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>JS PF project: het Document Object Model</title>
+<style type="text/css" media="all">
+body{
+	font-family:Verdana, Geneva, sans-serif;
+	color:#333;
+	}
+img{
+	float:right;
+	}
+</style>
+
+<script type="text/javascript">
+
+window.onload = function(){
+	
+// change h text
+  var eTitel = document.getElementById('kop');
+  eTitel.innerHTML = "De doc tree";
+  
+//remove replace li with a new one
+  var ali = document.getElementsByTagName('li');
+  var e2li = ali[1];
+  e2li.removeChild(e2li.childNodes[0]);
+  var stext = document.createTextNode("afaf");
+  e2li.appendChild(stext);
+  
+
+//add a new li to ul
+  var eul = document.getElementsByTagName('ul')[0];
+  var eli     = document.createElement('li');
+  var stext = document.createTextNode('Perl');
+  eli.appendChild(stext);
+  eul.appendChild(eli);
+  
+// change im en attributes
+var eim = document.getElementsByTagName('img')[0];
+//eim.src = "../images/2012.jpg" ;
+eim.alt = "mijn alt" ;
+eim.title = "mijn titel" ;
+
+
+
+
+// change p text
+var ep = document.getElementsByTagName('p')[0];
+ep.childNodes[1].textContent = 'De meeste programmeurs';
+ep.childNodes[2].textContent = ' leven ';
+ep.childNodes[3].textContent = 'op koffie en chocolade';
+
+// or
+ep.innerHTML='De meeste programmeurs <em>leven</em> op koffie en chocolade'
+
+var econtDiv = document.getElementById('container');
+var eDiv = document.createElement('div');
+eDiv.id = 'footer';
+
+
+// add footer
+eDiv.innerHTML = "&lt;je vindt een job op de <a href=''>vdab</a> website>";
+econtDiv.appendChild(eDiv);
+
+// or
+/*var eChild1  = document.createTextNode('<je vindt een job op de ');
+var eChild2  = document.createElement('a');
+var eChild3  = document.createTextNode(' website>');
+
+econtDiv.appendChild(eChild1);
+econtDiv.appendChild(eChild2);
+econtDiv.appendChild(eChild3);
+*/
+
+var ea = document.getElementsByTagName('a')[0];
+ea.href = "https://www.google.be/search?q=science+fiction&biw=1280&bih=899&source=lnms&tbm=isch&sa=X&ei=QBq1VLySJKKs7AbXs4CACQ&sqi=2&ved=0CAYQ_AUoAQ";
+ea.target = '_blank';
+
+
+
+
+
+
+
+
+  }
+  
+ </script>
+
+
+</head>
+<body>
+<div id="container">
+  <h1 id="kop">Het Document Object Model</h1>
+  <!-- dit is HTML commentaar onzichtbaar in het beeld-->
+  <p><img src="../images/linda.jpg" alt="Linda, een front-end programmeur" />De meeste programmeurs <em>leven</em> op koffie</p>
+  <p>Veel programmeurs zijn liefhebbers van <a href="http://en.wikipedia.org/wiki/Science-fiction">science-fiction</a></p>
+  <div class="menu">
+    <h2>Onze programmeertalen</h2>
+    <ul>
+      <li>Javascript</li>
+      <li>PHP</li>
+      <li>ASP.Net</li>
+      <li>Java</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

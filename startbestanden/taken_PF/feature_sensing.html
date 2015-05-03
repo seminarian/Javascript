@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Feature sensing</title>
+	<script src="featuresensing_lijst.js"></script>
+	<script>
+	window.onload = function () {
+	var nAantal = aLijst.length;
+
+	var eList = document.createElement('ul');
+	var eNav = document.getElementById('nav');
+//	eNav.innerHTML = 'Name ' + navigator.appName 
+	eNav.innerHTML = 'Name :'+ navigator.appName + '<br>'+ 'code :' + navigator.appCodeName + '<br>' + "UserAgent :" + navigator.userAgent ;
+	
+
+	console.log("onload" + nAantal);
+		// if (""){
+		// 	alert("cucu");
+		// } else {
+		// 	alert("blq");
+		// }
+	for (i=0; i<nAantal; i++) {
+		var sNaam = aLijst[i];
+		var eLi = document.createElement('li');
+		eLi.innerHTML = aLijst[i];
+
+		if(eval(aLijst[i])){	
+			eLi.innerHTML = aLijst[i]  + ' <span style=\"color:green\"> Ja </span>';			
+		}
+		else {
+			eLi.innerHTML = aLijst[i]  + ' <span style=\"color:red\"> Nee </span>';
+		}
+		eList.appendChild(eLi);
+
+	}
+	console.log(eList);
+	var eBody = document.getElementById("body");
+	eBody.appendChild(eList);
+	}
+	</script>
+</head>
+<body id="body">
+	<h1 id="nav">Feature sensing</h1>
+</body>
+</html>
+
+
+
+
+
+
