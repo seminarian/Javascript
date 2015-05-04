@@ -60,6 +60,78 @@ ul.fouten li{
 
 -->
 </style>
+<script type="text/javascript">
+      // Objectvariable met alle validatie regels 
+      var oFouten = {   
+            required : {
+                  msg : "verplicht veld",
+                  test : function(elem){ return elem.value != "";}             
+                  },
+                  
+                  
+            aantal : function(elem){
+                  if(elem.value != ""){
+                        return !isNaN(elem.value) && elem.value>0;
+                        }else{ return true; }
+            
+                  },
+                  
+            datum :{ 
+                        msg : "datum ongeldig (d/m/yyyy)",
+                        test : function(elem){
+                        // dd/mm/yyyy
+                        var re_datum = /^([0-9]|[0,1,2][0-9]|3[0,1])\/([\d]|1[0,1,2])\/d{4}$/;
+                        if(elem.value ) {
+
+                        }
+                        
+                        }
+                  }
+      }
+
+
+ window.onload = function(){
+
+
+
+
+      var eFrmVlucht = document.frmVlucht;
+      var eRetour =     document.frmVlucht.optRetour;
+      var eEnkel = document.frmVlucht.optEnkel;
+      var eVolw = document.frmVlucht.volwassenen;
+      var eKind = document.frmVlucht.kinderen;
+      var ePeut = document.frmVlucht.peuters;
+      
+      //formulier submit
+      eFrmVlucht.addEventListener('submit', function(e){
+      e.preventDefault(); 
+      console.log('wie is this?' + this.name);
+      var bValid = valideer(this);
+      console.log('formulier ' + this.name + 'valideer ' + bValid);
+      if (bValid === true){ this.submit();}
+                  });
+
+}
+
+function valideer(frm) {
+      var bValid = true;
+
+      //lus doorheen alle form elementen van het formulier
+      for(var i=0;i<frm.elements.length;i++) {
+            //verwijder vorige foutboodschappen
+            hideErrors(frm.elements[i]);
+            //valideer veld
+            var bVeld = valideerVeld(frm.elements[i]);
+            console.log("het element %s met name %s valideert %s",
+                  frm.elements[i].nodeName,frm.elements[i].name,bVeld);
+            if(bVeld == false) { bValid = false;}
+      }
+
+
+      return bValid;
+}
+
+</script>
 
 </head>
 <body>
@@ -70,10 +142,10 @@ ul.fouten li{
   <fieldset id="logingegevens">
     <legend>Login gegevens</legend>
     <label for="username">Gebruikersnaam:</label>
-    <input type="text" name="username" id="username" class="text" title="uw gebruikersnaam (emailadres)" />
+    <input type="text" name="username" id="username" class="text required" title="uw gebruikersnaam (emailadres)" />
     <br />
     <label for="wachtwoord">Wachtwoord:</label>
-    <input type="password" name="wachtwoord" id="wachtwoord" class="text" title="uw wachtwoord" />
+    <input type="password" name="wachtwoord" id="wachtwoord" class="text required" title="uw wachtwoord" />
      <br />
     <label for="onthouLogin">Onthou login?</label>
     <input type="checkbox" name="onthouLogin" id="onthouLogin" title="Onthou login settings" />

@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Taalkeuze</title>
+	<script type="text/javascript" src="../projecten_PF/nuttig_lib.js"></script>
+	<script type="text/javascript">
+			if (getCookie('taal')) {
+				switch (getCookie('taal')) {
+					case 'nederlands': window.location.href = 'nederlands.html';
+						break;
+					case 'francais': window.location.href = 'francais.html';
+						break;
+					case 'english': window.location.href = 'english.html';
+						break;
+				}
+			}
+		window.onload = function () {
+
+			eNederlands = document.querySelector("#nederlands");
+			eFrancais = document.querySelector("#francais");
+			eEnglish = document.querySelector("#english");
+
+			eNederlands.addEventListener('click',function() {
+				setCookie("taal","nederlands",100);
+				console.log("cookiegezet");
+				// alert("cookiegezet");
+			});
+			eFrancais.addEventListener('click',function() {
+				setCookie("taal","francais",100);
+				console.log("cookiegezet");
+				// alert("cookiegezet");
+			});
+			eEnglish.addEventListener('click',function() {
+				setCookie("taal","english",100);
+				console.log("cookiegezet");
+				// alert("cookiegezet");
+			});
+		}
+
+
+	</script>
+</head>
+<body>
+	<h1>Taalkeuze Intro pagina</h1>
+
+	<a id="nederlands" href="nederlands.html">Nederlands</a>
+	<a id="francais" href="francais.html">Français</a>
+	<a id="english" href="english.html">English</a>
+</body>
+</html>
+
+
+
+

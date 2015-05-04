@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>JS project: cookieBank</title>
-<script type="text/javascript" src="../js/nuttig_lib.js"></script>
+
 
 
 <style>
@@ -47,8 +47,7 @@ label.msg {
 <script>
 	
 	window.onload = function(){
-		console.log("hallo");
-		console.log('rekening openen');
+		
 		//*************************functions***************
 		function maakKnop(tekst) {
 			// return een DOM button
@@ -66,8 +65,8 @@ label.msg {
 			var sNaam = window.prompt("Uw naam, graag ?", "");
 			if ( sNaam != null &&  sNaam != "" ){
 			
-				setCookie('klantnaam', sNaam, 100);
-				setCookie('saldo', 100, 100);
+				localStorage.setItem('klantnaam', sNaam);
+				localStorage.setItem('saldo', 100);
 				window.history.go(0);
 				}
 			}
@@ -75,8 +74,7 @@ label.msg {
 			
 		function rekeningSluiten(){
 			// vernietigt de rekening dus de cookie
-			clearCookie('klantnaam');
-			clearCookie('saldo');
+			localStorage.clear;
 			window.history.go(0);
 			
 			}
@@ -104,7 +102,7 @@ label.msg {
 			var nNieuwSaldo = 0;
 			var eBedrag = document.getElementById('bedrag');
 			var sBedrag = eBedrag.value;
-			var sSaldo = getCookie('saldo');
+			var sSaldo = localStorage.getItem('saldo');
 			var sBericht = "";
 			var re = /,/;
 			sBedrag = sBedrag.replace(re, '.');
@@ -135,7 +133,7 @@ label.msg {
 						
 						}
 					else {					
-					setCookie('saldo', nNieuwSaldo,100 );
+					localStorage.setItem('saldo', nNieuwSaldo);
 					window.history.go(0);
 					eBedrag.value = "";
 					}
@@ -151,7 +149,6 @@ label.msg {
 					//saldo doesn't exist => rekening doesn't exist
 					var bOpenen = window.confirm('u heeft geen rekening, nu even doen ?');
 						if (bOpenen === true){rekeningOpenen()};
-					
 					}
 			}
 
@@ -171,11 +168,18 @@ label.msg {
 		
 		
 		
+		
+		
+		
+		if (localStorage) {	
+			console.log('local storage ok');
+						
+			
 		// test if cookie bestaat
-		if (getCookie('klantnaam')){
+		if (localStorage.klantnaam){
 			// gekende klant
-			var sNaam = getCookie('klantnaam');
-			var nSaldo =     parseFloat(getCookie('saldo')).toFixed(2) ;
+			var sNaam = localStorage.klantnaam;
+			var nSaldo =     parseFloat(localStorage.saldo).toFixed(2) ;
 			
 			//bericht
 			sMsg += "Welkom " + sNaam + ",";
@@ -198,7 +202,11 @@ label.msg {
 			eKnop.addEventListener('click', rekeningOpenen);		
 			}
 			
+		}
+		else {
+			// gebruik cookies
 			
+			}
 						
 			//event handler voor + - knoppen
 			eKnopKrediet.addEventListener('click', function(){berekenen('+')});

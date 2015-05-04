@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>JS PF project: kalender</title>
 <link rel="stylesheet" href="kalender.css" type="text/css" />
+<script type="text/javascript" src="nuttig_lib.js"></script>
 <style media="screen" type="text/css">
 <!--
 noscript div {
@@ -21,7 +22,129 @@ div.maandContainer{
 	}
 -->
 </style>
+<script type="text/javascript">
+	window.onload = function () {
+		console.log("huidige dag: " + huidigeDag);
+		// DOM elementen
+		var divOutput = document.getElementById("output");
+		var divKalender = document.getElementById('kalender');
 
+		//leeg inhoud
+
+
+		//plaatst huidige datum-tijd in output element
+/*		divOutput.innerHTML = getVandaagStr();
+		console.log("test");
+*/
+/*		divKalender.innerHTML = maakMaandTabel(2015,4);*/
+/*		console.log("schrikkeljaar? : " + isSchrikkeljaar(2016));*/
+/*		divKalender.innerHTML += maakMaandTabel(huidigJaar,huidigeMaand);*/
+divKalender.innerHTML = maakJaarKalender(huidigJaar);
+		dagAanduiden(vandaag,'vandaag');
+		dagAanduiden(verjaardag,'verjaardag');
+
+
+	}
+
+function dagAanduiden(oDatum, CSS_Class){
+	
+//welk jaar, maand en dag om id te reconstrueeren
+
+	var dDag = oDatum.getDate();
+	var dMaand = oDatum.getMonth();
+	var dJaar = oDatum.getFullYear();
+	
+	var strId = dJaar + "_"+ dMaand + "_" + dDag;
+	var dCel = document.getElementById(strId);
+
+	if(dCel){
+		dCel.className = CSS_Class;
+		}
+		
+	}
+
+	function maakJaarKalender(kalenderJaar){
+	
+	strJaarKalender ="";
+	
+	for (var i=0 ; i<12; i++){
+		strJaarKalender += "<div class = 'maandContainer'>";
+		strJaarKalender += maakMaandTabel(kalenderJaar, i);
+		strJaarKalender += "</div>";
+		}
+	
+	return strJaarKalender;
+	
+	}
+
+
+
+	function maakMaandTabel(kalenderJaar, maandIndex){
+
+// control argumenten	
+	if (isNaN (kalenderJaar) || (kalenderJaar.toString().length !=4)){
+		return "fout jaargetal";
+		}
+	if (isNaN (maandIndex) || (maandIndex<0) || (maandIndex > 11)){
+		return "fout maandgetal";		
+		}
+		
+//weekdag van de eerste van de eerste dag van de maand
+	var start_datum = new Date(kalenderJaar, maandIndex, 1);
+	var start_weekdag = start_datum.getDay();
+
+// bepaal einddag voor die maand, mogelijke uitzondering februari van schrikkeljaar
+	var eindDag = arrMaanden[maandIndex][1];      
+	
+	if(( maandIndex == 1) && (isSchrikkeljaar(kalenderJaar))) {
+		eindDag = 29
+		}
+		
+
+//opbouw return waarde string
+	strMaandTabel = "<table class='kalender'>\n";
+	//titelrij
+	strMaandTabel += "<tr><th colspan = '7'>" + arrMaanden[maandIndex][0] + " "; 
+	strMaandTabel += kalenderJaar + "</th></tr>\n";
+	
+//dagtitels
+	strMaandTabel += "<tr>";
+	for(var i=0 ; i<7 ; i++){
+		strMaandTabel += "<td>" + arrWeekdagen[i].substr(0,2).toUpperCase() + "</td>";
+		}
+	strMaandTabel += "</tr>\n";
+	
+	var dag = 1;
+	var teller = 0;
+	console.log("dag : " + dag + "einddag: " + eindDag);
+	while (dag <= eindDag){
+		//weekrij
+		strMaandTabel += "<tr>";
+		for(var i=0 ; i<7 ; i++){
+			//teken cellen met of zonder dag ingevuld
+			var strId= '';
+			var strDagNummer = '';
+			
+			//schrij de dagen
+			if((teller>= start_weekdag)&&(dag <=eindDag)){
+				strDagNummer = dag;
+				strId = " id = '" + kalenderJaar + "_" + maandIndex + "_" + dag + "'";
+				dag++;				
+				} // end if
+				
+			//schrijf de cel
+			strMaandTabel += "<td " + strId + ">" + strDagNummer + "</td>";
+			teller++;
+			} // end for
+		strMaandTabel += "</tr>\n";				
+		
+		} //end while
+		strMaandTabel += "</table>\n";		
+		return strMaandTabel;
+	
+	} // end function
+
+</script>
 </head>
 <body>
 <h1>JS PF project: JS Kalender</h1>

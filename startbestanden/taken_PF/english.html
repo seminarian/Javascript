@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>English</title>
+	<script type="text/javascript" src="../projecten_PF/nuttig_lib.js"></script>
+	<script>
+	window.onload = function(){
+		var eDeleteCookie = document.getElementById('wiscookie');
+		eDeleteCookie.addEventListener('click', function(){
+		clearCookie('taal');
+		alert("cookie gewist");
+		});
+		
+		var eChangeLanguage =  document.getElementById('changeLanguage');
+		eChangeLanguage.addEventListener('click', function(e){
+			e.preventDfdsfdsefault;
+			console.log("in wiskcookie");
+			clearCookie('taal'); window.location = "taalkeuze.html";});
+
+	}
+
+	</script>
+</head>
+<body>
+	<h1>English</h1>
+
+	<a id="changeLanguage" href="taalkeuze.html">Ga terug naar intro-pagina.</a>
+	<a id="wiscookie" href="">CLear cookie.</a>
+</body>
+</html>

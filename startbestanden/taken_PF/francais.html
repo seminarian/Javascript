@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Francais</title>
+	<script type="text/javascript" src="../projecten_PF/nuttig_lib.js"></script>
+	<script>
+	window.onload = function(){
+		
+		// var eDeleteCookie = document.getElementById('deleteCookie');
+		// eDeleteCookie.addEventListener('click', function(){clearCookie('language');});
+		
+		var eChangeLanguage =  document.getElementById('changeLanguage');
+		eChangeLanguage.addEventListener('click', function(){clearCookie('taal'); window.location = "taalkeuze.html";});
+
+		}
+
+	</script>
+</head>
+<body>
+	<h1>Francais</h1>
+
+	<a id="changeLanguage" href="taalkeuze.html">Ga terug naar intro-pagina.</a>
+</body>
+</html>
