@@ -44,6 +44,7 @@ var aGroenten = [["aardappelen",0.95,"kg"],
 	//TOON MANDJE
 	function toonMandje() {
 		var eLeeg = document.getElementById('leeg');
+		eLeeg.style.display = "block";
 		var nTeller = 0;
 		var eTotaal = document.getElementById('totaal');
 		var eWinkelMandje = document.getElementById('winkelmandje');
@@ -54,14 +55,16 @@ var aGroenten = [["aardappelen",0.95,"kg"],
 		eDiv = document.createElement('div');
 		eDiv.id = 'div';
 		var eLijn = null;
+		var sTekst = "<div class='titel'><div>Groente</div><div>Prijs</div><div>Aantal</div><div>Subtotaal</div><div>Wis</div></div>"
 		for(i=0;i<nGroenten;i++) {
 			if (Mandje[i]["aantal"] > 0) {
-				eLijn = document.createElement('p');
-				sTekst = Mandje[i]["groente"] + " prijs: " + Mandje[i]["prijs"] + " aantal: " + Mandje[i]["aantal"] + " subtotaal: " + (Mandje[i]["aantal"]*Mandje[i]["prijs"]).toFixed(2) + "<a href='http://www.google.be'' class='remove' index='" + i + "'>WIS</a>" ;
+				eLijn = document.createElement("div");
+				sTekst += "<div class='rij'><div>" + Mandje[i]["groente"] + "</div><div>" + Mandje[i]["prijs"] + "</div><div>" + Mandje[i]["aantal"] + "</div><div>" + (Mandje[i]["aantal"]*Mandje[i]["prijs"]).toFixed(2) + "</div><div><a href='#' class='remove' index='" + i + "'>WIS</a></div></div>";
 				console.log(sTekst);
 				eLijn.innerHTML = sTekst;
 				nTeller++;
 				eDiv.appendChild(eLijn);
+				sTekst = "";
 			}
 		}
 
@@ -90,15 +93,19 @@ var aGroenten = [["aardappelen",0.95,"kg"],
 		return totaal;
 	}
 	function wis (element) {
+			var eTotaal = document.getElementById("totNum");
 		console.log(element);
 		var nIndex = element.getAttribute("index");
 		console.log("index: " + nIndex);
 		Mandje[nIndex]["aantal"] = 0;
 		console.log("gewist");
 		toonMandje();
+		eTotaal.innerHTML = berekenTotaal().toFixed(2);
+
 	}
 
 window.onload = function() {
+		var eTotaal = document.getElementById("totNum");
 	var eAantal = document.getElementById('aantal');
 	var eMidden = document.getElementById('midden');
 	var sErrorText = "";
@@ -142,7 +149,7 @@ window.onload = function() {
 
 	//BUTTON TOEVOEGEN
 	var eButton = document.getElementById("toevoegen");
-	var eTotaal = document.getElementById("totNum");
+
 	eButton.addEventListener('click', function() {
 		ePerror.style.display = "none";
 		var validatie = valideer();

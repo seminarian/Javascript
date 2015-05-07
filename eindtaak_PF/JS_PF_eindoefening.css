@@ -14,7 +14,24 @@ body {
 	}
 	
 /*******************LAYOUT*******************/
+.rij div {
+	width:15%;
+	float:left;
+	display:inline-block;
+}
 
+.titel div {
+	width:15%;
+	float:left;
+	display:inline-block;
+}
+.titel div:first-child, .rij div:first-child {
+	width:40%;
+}
+
+#totNum {
+	text-align: center;
+}
 #container{
 	width: 800px;
 	min-height: 100%;
@@ -58,6 +75,12 @@ body {
 	border:1px solid silver;
 	
 	}
+	.titel div {
+		background-color:#ff4116;
+		color:white;
+		font-weight:bold;
+
+	}
 #winkelmandje .item{
 	width:500px;
 	font-size: 1em;
@@ -74,11 +97,11 @@ body {
 	
 	}
 #winkelmandje .cellinks		{width:196px;text-align:left;}
-#winkelmandje .celrechts	{float:right;width:96px;text-align:right;background-color:#ff4116; }
+#winkelmandje .celrechts	{float:right;width:96px;text-align:center;background-color:#ff4116; }
 
 #winkelmandje #totaal{
 	background-color:#FFF;
-	text-align:right;
+	text-align:center;
 
 	}	
 #winkelmandje h2{
